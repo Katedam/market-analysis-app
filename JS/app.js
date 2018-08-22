@@ -24,16 +24,21 @@ placeRandomImages = function() {
     var addImage = document.getElementById('images')
     var image = document.createElement('img');
     var index = makeThreeRandomImages(0, images.length);
+    addImage.innerText = "";
     image.setAttribute('src', "img/"+images[index].fileName);
     addImage.appendChild(image);
+    addImage.addEventListener('click', placeRandomImages);
     image = document.createElement('img');
     index = makeThreeRandomImages(0, images.length);
     image.setAttribute('src', "img/"+images[index].fileName)
     addImage.appendChild(image);
+    addImage.addEventListener('click', placeRandomImages);
+
     image = document.createElement('img');
     index = makeThreeRandomImages(0, images.length);
     image.setAttribute('src', "img/"+images[index].fileName)
     addImage.appendChild(image);
+    addImage.addEventListener('click', placeRandomImages);
 }
 
 function makeThreeRandomImages(min, max) {
