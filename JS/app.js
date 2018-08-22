@@ -24,25 +24,32 @@ placeRandomImages = function() {
     var addImage = document.getElementById('images')
     var image = document.createElement('img');
     var index = makeThreeRandomImages(0, images.length);
+    //clear the page
     addImage.innerText = "";
     image.setAttribute('src', "img/"+images[index].fileName);
     addImage.appendChild(image);
-    addImage.addEventListener('click', placeRandomImages);
+    addImage.addEventListener('click', trackClicks);
     image = document.createElement('img');
     index = makeThreeRandomImages(0, images.length);
     image.setAttribute('src', "img/"+images[index].fileName)
     addImage.appendChild(image);
-    addImage.addEventListener('click', placeRandomImages);
-
+    addImage.addEventListener('click', trackClicks);
     image = document.createElement('img');
     index = makeThreeRandomImages(0, images.length);
     image.setAttribute('src', "img/"+images[index].fileName)
     addImage.appendChild(image);
-    addImage.addEventListener('click', placeRandomImages);
+    addImage.addEventListener('click', trackClicks);
 }
 
 function makeThreeRandomImages(min, max) {
     return Math.floor((Math.random() * (max - min)) + min);
+}
+
+function trackClicks(event){
+    //record the src(image name) of the target(images div) of the event (click)
+    console.log(event.target.src);
+    //recall the function to replace images
+    placeRandomImages();
 }
 
 window.addEventListener('load', placeRandomImages);
