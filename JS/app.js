@@ -20,35 +20,48 @@ images.push(new getImage("water_can.jpg"));
 images.push(new getImage("wine_glass.jpg"));
 
 
-placeRandomImages = function() {
+function placeRandomImages() {
     var addImage = document.getElementById('images')
     var image = document.createElement('img');
-    var index = makeThreeRandomImages(0, images.length);
     //clear the page
     addImage.innerText = "";
-    image.setAttribute('src', "img/"+images[index].fileName);
+    makeThreeRandomImages(images);
+    //reload images
+    image.setAttribute('src', "img/"+images[0].fileName);
     addImage.appendChild(image);
     addImage.addEventListener('click', trackClicks);
     image = document.createElement('img');
-    index = makeThreeRandomImages(0, images.length);
-    image.setAttribute('src', "img/"+images[index].fileName)
+    image.setAttribute('src', "img/"+images[1].fileName)
     addImage.appendChild(image);
     addImage.addEventListener('click', trackClicks);
     image = document.createElement('img');
-    index = makeThreeRandomImages(0, images.length);
-    image.setAttribute('src', "img/"+images[index].fileName)
+    image.setAttribute('src', "img/"+images[2].fileName)
     addImage.appendChild(image);
     addImage.addEventListener('click', trackClicks);
 }
 
-function makeThreeRandomImages(min, max) {
-    return Math.floor((Math.random() * (max - min)) + min);
-}
+function makeThreeRandomImages(array) {
+    var newLength = array.length
+    while (newLength) {
+        var ranNum = Math.floor(Math.random() * newLength--);
+        var swap = array[newLength];
+        //switch newLength with the ranNum
+        array[newLength] = array[ranNum];
+        //now switch ranNum with newLength
+        array[ranNum] = swap;
+    } 
+    return array; 
+} 
 
-function trackClicks(event){
-    //record the src(image name) of the target(images div) of the event (click)
-    console.log(event.target.src);
-    //recall the function to replace images
+var totalClicks = 0;
+
+function trackClicks(){
+    for (var index = 0; index < images.length; index++) {
+        if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
+            images[index].voteTotal++
+            console.log(event.target.attributes[0].value + images[index].voteTotal);
+        } 
+    }
     placeRandomImages();
 }
 
