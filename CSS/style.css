@@ -1,3 +1,7 @@
 #images img {
     cursor: pointer;
 }
+
+h2 {
+    color: red;
+}

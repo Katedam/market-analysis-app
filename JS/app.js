@@ -23,10 +23,14 @@ images.push(new getImage("wine_glass.jpg"));
 function placeRandomImages() {
     var addImage = document.getElementById('images')
     var image = document.createElement('img');
+    var header = document.getElementsByTagName('header');
+    var instructions = document.createElement('h2');
     //clear the page
     addImage.innerText = "";
-    makeThreeRandomImages(images);
-    //reload images
+    shuffleArray(images);
+    //reload images and instructions
+    instructions.innerText = "Pick the product you would be most likely to purchase";
+    header[0].appendChild(instructions);
     image.setAttribute('src', "img/"+images[0].fileName);
     addImage.appendChild(image);
     addImage.addEventListener('click', trackClicks);
@@ -40,7 +44,7 @@ function placeRandomImages() {
     addImage.addEventListener('click', trackClicks);
 }
 
-function makeThreeRandomImages(array) {
+function shuffleArray(array) {
     var newLength = array.length
     while (newLength) {
         var ranNum = Math.floor(Math.random() * newLength--);
