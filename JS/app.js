@@ -63,7 +63,7 @@ function shuffleArray(array) {
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width);
-   if (totalClicks == 3) {
+   if (totalClicks == 15) {
        bar.style.width = '0%';
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
@@ -83,7 +83,8 @@ function resultsPage() {
     for (var index = 0; index < images.length; index++) {
         var image = document.createElement('img');
         image.setAttribute('src', "img/"+images[index].fileName) + ('style', 'width:100px');
-        showResults.appendChild(image); 
+        showResults.appendChild(image);
+        console.log(images[index].fileName + images[index].voteTotal); 
     }
     
 }
@@ -96,7 +97,7 @@ function trackClicks(event) {
         }
     }
     totalClicks++
-    if (totalClicks == 3) {
+    if (totalClicks == 15) {
         showProgress();
         resultsPage();
     } else { 
