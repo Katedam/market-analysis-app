@@ -100,8 +100,10 @@ function showProgress() {
 function resultsPage() {
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');
+    var progress = document.getElementById('progress');
     var table = document.getElementById('table');
     header[0].innerText = '';
+    progress.innerText = '';
     addImage.innerText = '';
     var showResults = document.getElementById('results');
     for (var index = 0; index < images.length; index++) {

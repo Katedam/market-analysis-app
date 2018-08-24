@@ -1,10 +1,9 @@
-body {
-    
-    background-size: cover;
-}
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Permanent+Marker');
 
-main {
+body {
     background-image: url("../desk.jpg");
+    background-size: cover;
+    height: 700px;
 }
 
 img {
@@ -19,15 +18,24 @@ img {
     cursor: pointer;
 }
 
+#results {
+    display: flex;
+    flex-flow: wrap;
+    max-width: 1000px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 #results img {
     top: 10px;
     left: 10px;
     height: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
          
 }
 
 #results h3.sharpieMarker {
+    font-family: 'Permanent Marker', cursive;
     margin-top: 0;
     margin-left: 10px;
     font-size: 12px;
@@ -38,33 +46,47 @@ img {
     box-sizing: border-box;
     width: 120px;
     height: 150px;
-    background-color: rgb(248, 247, 239);
+    background-color: rgb(252, 251, 247);
     margin: 20px;
-    box-shadow: 5px 5px 3px #aaaaaa;
+    box-shadow: 2px 2px 9px #221100;
 }
 
 #votingImgContainer {
     height: 270px;
-    background-color: rgb(248, 247, 239);
+    background-color: rgb(252, 251, 247);
     margin: 20px;
-    box-shadow: 5px 5px 3px #aaaaaa;
+    box-shadow: 2px 2px 9px #221100;
+}
+
+#votingImgContainer h3{
+    font-family: 'Permanent Marker', cursive;
+    padding-left: 20px;
+
+}
+h1 {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
 }
 
 h2 {
-    color: rgb(141, 140, 136);
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 #progress {
-    width: 500px;
-    background-color: grey;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-left: 25%;
+    width: 50%;
+    height: 20px;
+    background-color: rgba(133, 131, 131, 0.3);
     border-radius: 15px;
 }
 
 #bar {
-    text-align: center;
     color: white;   
-    height: 30px;
-    background-color: green;
+    height: 20px;
+    background-color: rgba(175, 120, 75, 0.5);
     border-radius: 15px;
 }
 
