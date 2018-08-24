@@ -1,3 +1,5 @@
+var totalClicks = 0;
+
 function getImage(fileName) {
     this.fileName = fileName;
     this.voteTotal = 0;
@@ -27,6 +29,7 @@ function placeRandomImages() {
     var instructions = document.createElement('h2');
     //clear the page
     addImage.innerText = "";
+    header[0].innerText = "";
     shuffleArray(images);
     //reload images and instructions
     instructions.innerText = "Pick the product you would be most likely to purchase";
@@ -57,36 +60,46 @@ function shuffleArray(array) {
     return array; 
 } 
 
-function resultsPage() {
-    var addImage = document.getElementById('images');
-    addImage.innerText = "";
-    console.log(addImage);
-    var image = document.createElement('img');
-    console.log(image);
-    image.setAttribute('src', "img/"+images[0].fileName);
-    console.log(image);
-    image.innerText = 'Top Choice';
-    addImage.appendChild(image);
-    console.log(addImage);
+function showProgress() {
+   var bar = document.getElementById("bar");
+   var width = parseInt(bar.style.width);
+   if (totalClicks == 3) {
+       bar.style.width = '0%';
+       var progress = document.getElementById("progress");
+       progress.style.width = '0%';
+   } else {
+        var string = width + 7 + '%';
+        bar.style.width = string;
+        bar.style.innerText = string;
+    }    
 }
 
-var totalClicks = 0;
+function resultsPage() {
+    var addImage = document.getElementById('images');
+    var header = document.getElementsByTagName('header');
+    header[0].innerText = '';
+    addImage.innerText = '';
+    var showResults = document.getElementById('results');
+    for (var index = 0; index < images.length; index++) {
+        var image = document.createElement('img');
+        image.setAttribute('src', "img/"+images[index].fileName) + ('style', 'width:100px');
+        showResults.appendChild(image); 
+    }
+    
+}
+
 function trackClicks(event) {
-    //add click to vote total key of each image object
+    showProgress();
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
             images[index].voteTotal++
-            console.log('img/'+ images[index].fileName + images[index].voteTotal);
         }
     }
-    //add click to total clicks variable
     totalClicks++
-    console.log(totalClicks);
-    //after 3 clicks - run this function for results page
     if (totalClicks == 3) {
-        console.log('clicked 3 times');
+        showProgress();
         resultsPage();
-    } else { //otherwise, replace with 3 new images to continue voting
+    } else { 
         placeRandomImages();
     }   
 }

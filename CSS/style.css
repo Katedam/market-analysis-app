@@ -1,7 +1,30 @@
+#images {
+    display: flex;
+    flex-flow: wrap;
+}
 #images img {
     cursor: pointer;
+}
+
+#results img {
+    width: 150px;
 }
 
 h2 {
     color: red;
 }
+
+#progress {
+    width: 500px;
+    background-color: grey;
+    border-radius: 15px;
+}
+
+#bar {
+    text-align: center;
+    color: white;   
+    height: 30px;
+    background-color: green;
+    border-radius: 15px;
+}
+
