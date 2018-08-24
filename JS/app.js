@@ -53,33 +53,38 @@ function makeThreeRandomImages(array) {
     return array; 
 } 
 
+function resultsPage() {
+    var addImage = document.getElementById('images');
+    addImage.innerText = "";
+    console.log(addImage);
+    var image = document.createElement('img');
+    console.log(image);
+    image.setAttribute('src', "img/"+images[0].fileName);
+    console.log(image);
+    image.innerText = 'Top Choice';
+    addImage.appendChild(image);
+    console.log(addImage);
+}
+
 var totalClicks = 0;
-function trackClicks() {
-    //add click to vote totals of each image
+function trackClicks(event) {
+    //add click to vote total key of each image object
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
             images[index].voteTotal++
             console.log('img/'+ images[index].fileName + images[index].voteTotal);
         }
     }
-    //add click to total clicks
+    //add click to total clicks variable
     totalClicks++
     console.log(totalClicks);
     //after 3 clicks - run this function for results page
     if (totalClicks == 3) {
         console.log('clicked 3 times');
-        function results() {
-            var addImage = document.getElementById('images');
-            var image = document.createElement('img');
-            image.setAttribute('src', "img/"+images[0].fileName);
-            image.innerText = 'Top Choice';
-            addImage.appendChild(image);
-        }
-    } else { //otherwise, replace with 3 new images with this function
+        resultsPage();
+    } else { //otherwise, replace with 3 new images to continue voting
         placeRandomImages();
     }   
 }
-
-
 
 window.addEventListener('load', placeRandomImages);
