@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Permanent+Marker');
 
 body {
-    background-image: url("../desk.jpg");
+    background-image: url("../img/mr-tt-628115-unsplash.jpg");
     background-size: auto 100%;
     background-repeat: no-repeat;
 }
@@ -26,25 +26,21 @@ img {
 }
 
 #results img {
-    top: 10px;
-    left: 10px;
-    height: 100px;
-    margin-bottom: 10px;
-         
+    margin: 10px;
+    height: 200px;         
 }
 
 #results h3.sharpieMarker {
     font-family: 'Permanent Marker', cursive;
     margin-top: 0;
     margin-left: 10px;
-    font-size: 12px;
+    font-size: 16px;
+    color: red;
 }
 
 #imageContainer {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 120px;
-    height: 150px;
+    width: 223px;
+    height: 270px;
     background-color: rgb(255, 255, 255);
     margin: 20px;
     box-shadow: 2px 2px 9px #221100;

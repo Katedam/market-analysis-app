@@ -98,39 +98,47 @@ function showProgress() {
 }
 
 function resultsPage() {
+    var voteTotals = [];
+    function getVoteTotals(input, field) {
+        for (var index = 0; index < input.length; index++)
+            voteTotals.push(input[index][field]);
+    }
+    getVoteTotals(images, "voteTotal");
+    var mostVotes = [];
+    for (var list = 0; list < 3; list++) {
+        var topPick = Math.max(...voteTotals);
+        mostVotes.push(topPick);
+        voteTotals.splice(0, topPick);
+    }
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');
     var progress = document.getElementById('progress');
-    var table = document.getElementById('table');
     header[0].innerText = '';
     progress.innerText = '';
     addImage.innerText = '';
     var thanks = document.createElement('h2');
-    thanks.innerText = 'Thank you for voting! Here are you results:';
+    thanks.innerText = 'Thank you for voting! Here are your top picks:';
     header[0].appendChild(thanks);
     var showResults = document.getElementById('results');
-    for (var index = 0; index < images.length; index++) {
+    for (var index = 0; index < mostVotes.length; index++) {
         var imageContainer = document.createElement('div');
         imageContainer.setAttribute('id', 'imageContainer');
         var image = document.createElement('img');
-        image.setAttribute('src', "img/"+images[index].fileName) + ('style', 'width:100px');
+        image.setAttribute('src', "img/"+images[index].fileName);
         imageContainer.appendChild(image);
         var name = document.createElement('h3');
         name.setAttribute('class', 'sharpieMarker');
-        name.innerHTML = images[index].name + "<br>VOTES  " + images[index].voteTotal;
+        name.innerHTML = images[index].name + "<br>VOTES  " + mostVotes[index];
         imageContainer.appendChild(name);
         showResults.appendChild(imageContainer);
     }
-    
 }
 
 function trackClicks(event) {
     showProgress();
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
-            console.log(event.target.attributes[0].value);
             images[index].voteTotal++
-            console.log(images[index].voteTotal);
         }
     }
     totalClicks++
