@@ -15,11 +15,11 @@ images.push(new getImage("cthulhu.jpg", 0, "Cthulhu"));
 images.push(new getImage("dragon.jpg", 0, "Dragon"));
 images.push(new getImage("pen.jpg", 0, "Pen Utensils"));
 images.push(new getImage("scissors.jpg", 0, "Pizza Scissors"));
-images.push(new getImage("shark.jpg", 0, "Shark Sleeping Bag"));
+images.push(new getImage("shark.jpg", 0, "Shark"));
 images.push(new getImage("sweep.jpg", 0, "Sweeper Babe"));
 images.push(new getImage("unicorn.jpg", 0, "Unicorn"));
 images.push(new getImage("usb.jpg", 0, "USB Tenticle"));
-images.push(new getImage("water_can.jpg", 0, "Self-watering can"));
+images.push(new getImage("water_can.jpg", 0, "Watering-Can"));
 images.push(new getImage("wine_glass.jpg", 0, "Wine Glass"));
 
 
@@ -34,7 +34,7 @@ function placeRandomImages() {
     header[0].innerText = "";
     shuffleArray(images);
     //reload images and instructions
-    instructions.innerText = "Pick the product you would be most likely to purchase";
+    instructions.innerText = "Pick the product you are most likely to purchase:";
     header[0].appendChild(instructions);
     imageContainer = document.createElement('div');
     imageContainer.setAttribute('id', 'votingImgContainer');
@@ -86,7 +86,7 @@ function shuffleArray(array) {
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width);
-   if (totalClicks == 3) {
+   if (totalClicks == 15) {
        bar.style.width = '0%';
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
@@ -105,6 +105,9 @@ function resultsPage() {
     header[0].innerText = '';
     progress.innerText = '';
     addImage.innerText = '';
+    var thanks = document.createElement('h2');
+    thanks.innerText = 'Thank you for your vote! Here are you results:';
+    header[0].appendChild(thanks);
     var showResults = document.getElementById('results');
     for (var index = 0; index < images.length; index++) {
         var imageContainer = document.createElement('div');
@@ -114,7 +117,7 @@ function resultsPage() {
         imageContainer.appendChild(image);
         var name = document.createElement('h3');
         name.setAttribute('class', 'sharpieMarker');
-        name.innerText = images[index].name + "     " + images[index].voteTotal;
+        name.innerHTML = images[index].name + "<br>VOTES  " + images[index].voteTotal;
         imageContainer.appendChild(name);
         showResults.appendChild(imageContainer);
     }
@@ -131,7 +134,7 @@ function trackClicks(event) {
         }
     }
     totalClicks++
-    if (totalClicks == 3) {
+    if (totalClicks == 15) {
         showProgress();
         resultsPage();
     } else { 
