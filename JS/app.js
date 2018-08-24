@@ -91,7 +91,7 @@ function showProgress() {
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
    } else {
-        var string = width + 7 + '%';
+        var string = width + 6 + '%';
         bar.style.width = string;
         bar.style.innerText = string;
     }    
@@ -106,7 +106,7 @@ function resultsPage() {
     progress.innerText = '';
     addImage.innerText = '';
     var thanks = document.createElement('h2');
-    thanks.innerText = 'Thank you for your vote! Here are you results:';
+    thanks.innerText = 'Thank you for voting! Here are you results:';
     header[0].appendChild(thanks);
     var showResults = document.getElementById('results');
     for (var index = 0; index < images.length; index++) {
