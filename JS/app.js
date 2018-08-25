@@ -46,6 +46,7 @@ function placeRandomImages() {
     imageContainer.appendChild(name);
     addImage.appendChild(imageContainer);
     image.addEventListener('click', trackClicks);
+
     imageContainer = document.createElement('div');
     imageContainer.setAttribute('id', 'votingImgContainer');
     image = document.createElement('img');
@@ -57,6 +58,7 @@ function placeRandomImages() {
     imageContainer.appendChild(name);
     addImage.appendChild(imageContainer);
     image.addEventListener('click', trackClicks);
+
     imageContainer = document.createElement('div');
     imageContainer.setAttribute('id', 'votingImgContainer');
     image = document.createElement('img');
@@ -75,40 +77,50 @@ function shuffleArray(array) {
     while (newLength) {
         var ranNum = Math.floor(Math.random() * newLength--);
         var swap = array[newLength];
-        //switch newLength with the ranNum
         array[newLength] = array[ranNum];
-        //now switch ranNum with newLength
         array[ranNum] = swap;
     } 
     return array; 
 } 
 
+//**still not returning right percent on 2nd click only**
+var percentRecorder = 6;
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width);
-   if (totalClicks == 15) {
+   var percent = document.createElement('p');
+    if (totalClicks == 15) {
        bar.style.width = '0%';
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
    } else {
+        bar.removeChild(bar.childNodes[0]);
+        console.log(bar);
+        percentRecorder += 6;
+        console.log(percentRecorder);
         var string = width + 6 + '%';
         bar.style.width = string;
-        bar.style.innerText = string;
+        percent = document.createElement('p');
+        percent.innerText = '  ' + percentRecorder + '%';
+        bar.appendChild(percent);
     }    
 }
 
 function resultsPage() {
     var voteTotals = [];
-    function getVoteTotals(input, field) {
-        for (var index = 0; index < input.length; index++)
-            voteTotals.push(input[index][field]);
+    function getVoteTotals(array, voteTotal) {
+        for (var index = 0; index < array.length; index++)
+            voteTotals.push(array[index][voteTotal]);   
     }
     getVoteTotals(images, "voteTotal");
+    console.log(voteTotals);
     var mostVotes = [];
     for (var list = 0; list < 3; list++) {
         var topPick = Math.max(...voteTotals);
         mostVotes.push(topPick);
+        console.log(mostVotes);
         voteTotals.splice(0, topPick);
+        console.log(voteTotals);
     }
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');

@@ -1,6 +1,17 @@
 
 h1 {
     text-align: center;
+    position: absolute;
+    top: 50px;
+    width: 50%;
+}
+
+.header {
+    height: 200px;
+}
+.header img {
+    left: -7em;
+    height: 170px;
 }
 
 #images {
@@ -13,6 +24,21 @@ h1 {
     flex-flow: wrap;
     height: 200px;
     margin: 10px;
+}
+
+#votingImgContainer {
+    height: 270px;
+    margin: 20px;
+}
+
+#imageContainer {
+    width: 223px;
+    height: 270px;
+    margin: 20px;
+}
+#results {
+    display: flex;
+    justify-content: center;
 }
 
 footer {

@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Permanent+Marker');
 
 body {
-    background-image: url("../img/mr-tt-628115-unsplash.jpg");
+    background-image: url("../img/chuttersnap-354308-unsplash.jpg");
     background-size: auto 100%;
-    background-repeat: no-repeat;
 }
 
 img {
@@ -12,21 +11,13 @@ img {
     border-left: 1px solid rgb(236, 234, 226);
     box-shadow: 1px 1px 2px #8b8b8b;
 }
+
 #images div {
     cursor: pointer;
 }
 
-#results {
-    display: flex;
-    flex-flow: wrap;
-    max-width: 1000px;
-    margin-left: 20px;
-    margin-right: 20px;
-    justify-content: center;
-}
-
 #results img {
-    margin: 10px;
+    margin: 10px 10px 0 10px;
     height: 200px;         
 }
 
@@ -34,23 +25,19 @@ img {
     font-family: 'Permanent Marker', cursive;
     margin-top: 0;
     margin-left: 10px;
-    font-size: 16px;
+    margin-bottom: 10px;
+    font-size: 18px;
     color: red;
 }
 
 #imageContainer {
-    width: 223px;
-    height: 270px;
     background-color: rgb(255, 255, 255);
-    margin: 20px;
     box-shadow: 2px 2px 9px #221100;
     border-radius: 3px;
 }
 
 #votingImgContainer {
-    height: 270px;
     background-color: rgb(255, 255, 255);
-    margin: 20px;
     box-shadow: 2px 2px 9px #221100;
     border-radius: 3px;
 }
@@ -60,50 +47,33 @@ img {
     padding-left: 20px;
 }
 
-.header {
-    height: 200px;
-}
-
 .header img {
-    position: absolute;
-    left: -7em;
-    height: 170px;
     border: none;
     box-shadow: none;
 }
 
 h1 {
-    position: absolute;
-    top: 50px;
-    left: 3em;
     font-family: 'Permanent Marker', cursive;
-    text-align: center;
-    width: 50%;
 }
 
 h2 {
     text-align: center;
     color: rgb(0, 0, 0);
     font-family: 'IBM Plex Mono', monospace;
-    text-shadow: 1px 1px 2px white;
     margin: 0 3em 1em 3em;
-    background-color: rgba(255, 255, 255, 0.5)
 }
 
 #progress {
     font-family: 'IBM Plex Mono', monospace;
     margin-left: 25%;
     width: 50%;
-    height: 20px;
     background-color: rgba(133, 131, 131, 0.3);
-    border-radius: 15px;
 }
 
 #bar {
     color: white;   
     height: 20px;
-    background-color: rgba(175, 120, 75, 0.5);
-    border-radius: 15px;
+    background-color: rgb(185, 83, 0);
 }
 
 
