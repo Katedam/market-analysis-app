@@ -95,9 +95,7 @@ function showProgress() {
        progress.style.width = '0%';
    } else {
         bar.removeChild(bar.childNodes[0]);
-        console.log(bar);
         percentRecorder += 6;
-        console.log(percentRecorder);
         var string = width + 6 + '%';
         bar.style.width = string;
         percent = document.createElement('p');
@@ -153,8 +151,7 @@ function trackClicks(event) {
 }
 
 window.addEventListener('load', placeRandomImages);
-// window.addEventListener('load', showProgress);
-
+window.addEventListener('load', drawChart);
 
 // Below is an alternative results page in which I was attemping to present the top three picks.
 // function resultsPage() {
