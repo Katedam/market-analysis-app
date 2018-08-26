@@ -83,8 +83,8 @@ function shuffleArray(array) {
     return array; 
 } 
 
-//**still not returning right percent on 2nd click only**
 var percentRecorder = 6;
+
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width);
@@ -107,21 +107,6 @@ function showProgress() {
 }
 
 function resultsPage() {
-    var voteTotals = [];
-    function getVoteTotals(array, voteTotal) {
-        for (var index = 0; index < array.length; index++)
-            voteTotals.push(array[index][voteTotal]);   
-    }
-    getVoteTotals(images, "voteTotal");
-    console.log(voteTotals);
-    var mostVotes = [];
-    for (var list = 0; list < 3; list++) {
-        var topPick = Math.max(...voteTotals);
-        mostVotes.push(topPick);
-        console.log(mostVotes);
-        voteTotals.splice(0, topPick);
-        console.log(voteTotals);
-    }
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');
     var progress = document.getElementById('progress');
@@ -129,10 +114,10 @@ function resultsPage() {
     progress.innerText = '';
     addImage.innerText = '';
     var thanks = document.createElement('h2');
-    thanks.innerText = 'Thank you for voting! Here are your top picks:';
+    thanks.innerText = 'Thank you for voting! Here are your results:';
     header[0].appendChild(thanks);
     var showResults = document.getElementById('results');
-    for (var index = 0; index < mostVotes.length; index++) {
+    for (var index = 0; index < images.length; index++) {
         var imageContainer = document.createElement('div');
         imageContainer.setAttribute('id', 'imageContainer');
         var image = document.createElement('img');
@@ -140,10 +125,15 @@ function resultsPage() {
         imageContainer.appendChild(image);
         var name = document.createElement('h3');
         name.setAttribute('class', 'sharpieMarker');
-        name.innerHTML = images[index].name + "<br>VOTES  " + mostVotes[index];
+        name.innerHTML = images[index].name + "<br>VOTES  " + images[index].voteTotal;
         imageContainer.appendChild(name);
         showResults.appendChild(imageContainer);
     }
+    var button = document.createElement('input');
+    button.setAttribute('type', 'button');
+    button.setAttribute('value', 'Vote Again');
+    header[0].appendChild(button);
+    button.addEventListener('click', placeRandomImages);
 }
 
 function trackClicks(event) {
@@ -163,3 +153,46 @@ function trackClicks(event) {
 }
 
 window.addEventListener('load', placeRandomImages);
+// window.addEventListener('load', showProgress);
+
+
+// Below is an alternative results page in which I was attemping to present the top three picks.
+// function resultsPage() {
+//     var voteTotals = [];
+//     function getVoteTotals(array, voteTotal) {
+//         for (var index = 0; index < array.length; index++)
+//             voteTotals.push(array[index][voteTotal]);   
+//     }
+//     getVoteTotals(images, "voteTotal");
+//     console.log(voteTotals);
+//     var mostVotes = [];
+//     for (var list = 0; list < 3; list++) {
+//         var topPick = Math.max(...voteTotals);
+//         mostVotes.push(topPick);
+//         console.log(mostVotes);
+//         voteTotals.splice(0, topPick);
+//         console.log(voteTotals);
+//     }
+//     var addImage = document.getElementById('images');
+//     var header = document.getElementsByTagName('header');
+//     var progress = document.getElementById('progress');
+//     header[0].innerText = '';
+//     progress.innerText = '';
+//     addImage.innerText = '';
+//     var thanks = document.createElement('h2');
+//     thanks.innerText = 'Thank you for voting! Here are your top picks:';
+//     header[0].appendChild(thanks);
+//     var showResults = document.getElementById('results');
+//     for (var index = 0; index < mostVotes.length; index++) {
+//         var imageContainer = document.createElement('div');
+//         imageContainer.setAttribute('id', 'imageContainer');
+//         var image = document.createElement('img');
+//         image.setAttribute('src', "img/"+images[index].fileName);
+//         imageContainer.appendChild(image);
+//         var name = document.createElement('h3');
+//         name.setAttribute('class', 'sharpieMarker');
+//         name.innerHTML = images[index].name + "<br>VOTES  " + mostVotes[index];
+//         imageContainer.appendChild(name);
+//         showResults.appendChild(imageContainer);
+//     }
+// }
