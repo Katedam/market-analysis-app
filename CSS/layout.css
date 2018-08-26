@@ -18,7 +18,9 @@ input[type="button"] {
     cursor: pointer;
     position: absolute;
     left: 78%;
-    bottom: 35%;
+    bottom: 60%;
+    width: 130px;
+    height: 40px;
     color: #ffffff;
     text-shadow: 1px 1px 2px rgb(211, 211, 211);
     background-color: rgb(247, 177, 72);

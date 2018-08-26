@@ -117,25 +117,25 @@ function resultsPage() {
     var thanks = document.createElement('h2');
     thanks.innerText = 'Thank you for voting! Here are your results:';
     header[0].appendChild(thanks);
-    drawChart();
-    var showResults = document.getElementById('results');
-    for (var index = 0; index < images.length; index++) {
-        var imageContainer = document.createElement('div');
-        imageContainer.setAttribute('id', 'imageContainer');
-        var image = document.createElement('img');
-        image.setAttribute('src', "img/"+images[index].fileName);
-        imageContainer.appendChild(image);
-        var name = document.createElement('h3');
-        name.setAttribute('class', 'sharpieMarker');
-        name.innerHTML = images[index].label + "<br>VOTES  " + images[index].y;
-        imageContainer.appendChild(name);
-        showResults.appendChild(imageContainer);
-    }
     var button = document.createElement('input');
     button.setAttribute('type', 'button');
     button.setAttribute('value', 'Vote Again');
     header[0].appendChild(button);
     button.addEventListener('click', placeRandomImages);
+    drawChart();
+    // var showResults = document.getElementById('results');
+    // for (var index = 0; index < images.length; index++) {
+    //     var imageContainer = document.createElement('div');
+    //     imageContainer.setAttribute('id', 'imageContainer');
+    //     var image = document.createElement('img');
+    //     image.setAttribute('src', "img/"+images[index].fileName);
+    //     imageContainer.appendChild(image);
+    //     var name = document.createElement('h3');
+    //     name.setAttribute('class', 'sharpieMarker');
+    //     name.innerHTML = images[index].label + "<br>VOTES  " + images[index].y;
+    //     imageContainer.appendChild(name);
+    //     showResults.appendChild(imageContainer);
+    // }
 }
 
 
