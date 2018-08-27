@@ -33,12 +33,6 @@ function placeRandomImages() {
         restartProgressBar.setAttribute('style', '');
         addBar.setAttribute('id', 'bar');
         addBar.setAttribute('style', 'width:7%');
-        // var width = 6 + '%';
-        // var string = width + 6 + '%';
-        // bar.style.width = string;
-        // percent = document.createElement('p');
-        // percent.innerText = '  ' + percentRecorder + '%';
-        // bar.appendChild(percent);
         restartProgressBar.appendChild(addBar);
         percentRecorder = 0;
         showProgress();
@@ -106,24 +100,20 @@ function shuffleArray(array) {
     return array;
 }
 
-var percentRecorder = 6;
-
 function showProgress() {
    var bar = document.getElementById("bar");
-   var width = parseInt(bar.style.width);
+   var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
+   console.log(width);
+   bar.innerText = '';
    var percent = document.createElement('p');
-    if (totalClicks == 3) {
+    if (totalClicks == 7) {
        bar.style.width = '0%';
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
    } else {
-        // bar.removeChild(bar.childNodes[0]);
-        percentRecorder += 6;
-        var string = width + 6 + '%';
-        bar.style.width = string;
-        percent = document.createElement('p');
-        percent.innerText = '  ' + percentRecorder + '%';
+        percent.innerText = width + '%';
         bar.appendChild(percent);
+        console.log(percent);
     }
 }
 
@@ -167,7 +157,7 @@ function trackClicks(event) {
         }
     }
     totalClicks++
-    if (totalClicks == 3) {
+    if (totalClicks == 7) {
         showProgress();
         resultsPage();
     } else {
