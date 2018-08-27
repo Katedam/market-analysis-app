@@ -79,3 +79,27 @@ footer {
 footer h6 {
     margin-bottom: 0;
 }
+
+#loser-container {
+    position: relative;
+    top: 400px;
+    left: 150px;
+    background-color: white;
+    color: red;
+    width: 212px;
+    padding: 10px;
+    margin: 1em;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 9px #221100;
+    border-radius: 3px;
+}
+
+#loser-container ul {
+    background-color: rgb(245, 243, 238);
+    color:black;
+    font-family: 'Permanent Marker', cursive;
+    position: relative;
+    border-top: 1px solid rgb(236, 234, 226);
+    border-left: 1px solid rgb(236, 234, 226);
+    box-shadow: 1px 1px 2px #8b8b8b;
+}

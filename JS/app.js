@@ -4,6 +4,12 @@ function getImage(fileName, name) {
     this.fileName = fileName;
     this.y = 0; //y = voteTotalForImage
     this.label = name;
+    this.clickHistory = 0;
+}
+
+function copyGetImages(name) {
+    this.label = name;
+    this.y = 0;
 }
 
 var images = [];
@@ -22,6 +28,21 @@ images.push(new getImage("usb.jpg", "USB Tenticle"));
 images.push(new getImage("water_can.jpg", "Watering-Can"));
 images.push(new getImage("wine_glass.jpg", "Wine Glass"));
 
+var copyImages = [];
+copyImages.push(new copyGetImages("Bag"));
+copyImages.push(new copyGetImages("Banana Slicer"));
+copyImages.push(new copyGetImages("Rain Boots"));
+copyImages.push(new copyGetImages("Red Chair"));
+copyImages.push(new copyGetImages("Cthulhu"));
+copyImages.push(new copyGetImages("Dragon"));
+copyImages.push(new copyGetImages("Pen Utensils"));
+copyImages.push(new copyGetImages("scissors.jpg", "Pizza Scissors"));
+copyImages.push(new copyGetImages("Shark"));
+copyImages.push(new copyGetImages("Sweeper Babe"));
+copyImages.push(new copyGetImages("Unicorn"));
+copyImages.push(new copyGetImages("USB Tenticle"));
+copyImages.push(new copyGetImages("Watering-Can"));
+copyImages.push(new copyGetImages("Wine Glass"));
 
 function placeRandomImages() {
     var chartContainer = document.getElementById('chart-container');
@@ -36,7 +57,6 @@ function placeRandomImages() {
         restartProgressBar.appendChild(addBar);
         percentRecorder = 0;
         showProgress();
-        console.log(totalClicks);
         for (var index = 0; index < images.length; index++) {
             images[index].y = 0;
         }   
@@ -103,7 +123,6 @@ function shuffleArray(array) {
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
-   console.log(width);
    bar.innerText = '';
    var percent = document.createElement('p');
     if (totalClicks == 7) {
@@ -113,7 +132,6 @@ function showProgress() {
    } else {
         percent.innerText = width + '%';
         bar.appendChild(percent);
-        console.log(percent);
     }
 }
 
@@ -133,6 +151,7 @@ function resultsPage() {
     header[0].appendChild(button);
     button.addEventListener('click', placeRandomImages);
     drawChart();
+    // drawHistoryChart();
     // var showResults = document.getElementById('results');
     // for (var index = 0; index < images.length; index++) {
     //     var imageContainer = document.createElement('div');
@@ -148,18 +167,32 @@ function resultsPage() {
     // }
 }
 
-
 function trackClicks(event) {
     showProgress();
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
             images[index].y++
+            images[index].clickHistory++;
         }
     }
     totalClicks++
     if (totalClicks == 7) {
         showProgress();
         resultsPage();
+        var container = document.getElementById('loser-container');
+        var zerosList = document.getElementById('list-of-losers');
+        for (var index = 0; index < images.length; index++) {
+            if (images[index].y == 0) {
+                var item = document.createElement('li');
+                item.innerText = images[index].label;
+                zerosList.appendChild(item);
+            }
+        }
+        container.appendChild(zerosList);
+        var listHeader = document.createElement('h3');
+        listHeader.setAttribute('class', 'sharpieMarker')
+        listHeader.innerText = 'Products with No Vote';
+        container.appendChild(listHeader);
     } else {
         placeRandomImages();
     }
