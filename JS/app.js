@@ -152,19 +152,22 @@ function resultsPage() {
     button.addEventListener('click', placeRandomImages);
     drawChart();
     // drawHistoryChart();
-    // var showResults = document.getElementById('results');
-    // for (var index = 0; index < images.length; index++) {
-    //     var imageContainer = document.createElement('div');
-    //     imageContainer.setAttribute('id', 'imageContainer');
-    //     var image = document.createElement('img');
-    //     image.setAttribute('src', "img/"+images[index].fileName);
-    //     imageContainer.appendChild(image);
-    //     var name = document.createElement('h3');
-    //     name.setAttribute('class', 'sharpieMarker');
-    //     name.innerHTML = images[index].label + "<br>VOTES  " + images[index].y;
-    //     imageContainer.appendChild(name);
-    //     showResults.appendChild(imageContainer);
-    // }
+}
+
+function resultsPageOfImages() {
+    var showResults = document.getElementById('results');
+    for (var index = 0; index < copyImages.length; index++) {
+        var imageContainer = document.createElement('div');
+        imageContainer.setAttribute('id', 'imageContainer');
+        var image = document.createElement('img');
+        image.setAttribute('src', "img/"+copyImages[index].fileName);
+        imageContainer.appendChild(image);
+        var name = document.createElement('h3');
+        name.setAttribute('class', 'sharpieMarker');
+        name.innerText = copyImages[index].label += "VOTES  " + images[index].y;
+        imageContainer.appendChild(name);
+        showResults.appendChild(imageContainer);
+    }
 }
 
 function trackClicks(event) {
@@ -172,7 +175,7 @@ function trackClicks(event) {
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
             images[index].y++
-            images[index].clickHistory++;
+            copyImages[index].y++
         }
     }
     totalClicks++
