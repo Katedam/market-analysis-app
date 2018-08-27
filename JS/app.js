@@ -24,6 +24,29 @@ images.push(new getImage("wine_glass.jpg", "Wine Glass"));
 
 
 function placeRandomImages() {
+    var chartContainer = document.getElementById('chart-container');
+    if (chartContainer.innerText !== '') {
+        chartContainer.innerText = '';
+        totalClicks = 0;
+        var restartProgressBar = document.getElementById('progress');
+        var addBar = document.createElement('div');
+        restartProgressBar.setAttribute('style', '');
+        addBar.setAttribute('id', 'bar');
+        addBar.setAttribute('style', 'width:7%');
+        // var width = 6 + '%';
+        // var string = width + 6 + '%';
+        // bar.style.width = string;
+        // percent = document.createElement('p');
+        // percent.innerText = '  ' + percentRecorder + '%';
+        // bar.appendChild(percent);
+        restartProgressBar.appendChild(addBar);
+        percentRecorder = 0;
+        showProgress();
+        console.log(totalClicks);
+        for (var index = 0; index < images.length; index++) {
+            images[index].y = 0;
+        }   
+    }
     var addImage = document.getElementById('images');
     var image = document.createElement('img');
     var header = document.getElementsByTagName('header');
@@ -43,7 +66,6 @@ function placeRandomImages() {
     name = document.createElement('h3');
     name.setAttribute('class', 'sharpieMarker');
     name.innerText = images[0].label;
-    console.log(images[0].label);
     imageContainer.appendChild(name);
     addImage.appendChild(imageContainer);
     image.addEventListener('click', trackClicks);
@@ -95,10 +117,8 @@ function showProgress() {
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
    } else {
-        bar.removeChild(bar.childNodes[0]);
-        console.log(bar);
+        // bar.removeChild(bar.childNodes[0]);
         percentRecorder += 6;
-        console.log(percentRecorder);
         var string = width + 6 + '%';
         bar.style.width = string;
         percent = document.createElement('p');
