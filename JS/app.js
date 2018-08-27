@@ -139,6 +139,8 @@ function resultsPage() {
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');
     var progress = document.getElementById('progress');
+    var container = document.getElementById('loser-container');
+    container.innerText = '';
     header[0].innerText = '';
     progress.innerText = '';
     addImage.innerText = '';
@@ -151,10 +153,25 @@ function resultsPage() {
     header[0].appendChild(button);
     button.addEventListener('click', placeRandomImages);
     drawChart();
+    var zerosList = document.getElementById('list-of-losers');
+    for (var index = 0; index < images.length; index++) {
+        if (images[index].y == 0) {
+            (console.log(images[index]));
+            var item = document.createElement('li');
+            console.log(item);
+            item.innerText = images[index].label;
+            console.log(item.innerText);
+            zerosList.appendChild(item);
+            console.log(zerosList);
+        }
+    }
+    container.appendChild(zerosList);
+    var listHeader = document.createElement('h3');
+    listHeader.setAttribute('class', 'sharpieMarker')
+    listHeader.innerText = 'Products with No Vote';
+    container.appendChild(listHeader);
     // drawHistoryChart();
 }
-
-
 
 function trackClicks(event) {
     showProgress();
@@ -168,20 +185,6 @@ function trackClicks(event) {
     if (totalClicks == 7) {
         showProgress();
         resultsPage();
-        var container = document.getElementById('loser-container');
-        var zerosList = document.getElementById('list-of-losers');
-        for (var index = 0; index < images.length; index++) {
-            if (images[index].y == 0) {
-                var item = document.createElement('li');
-                item.innerText = images[index].label;
-                zerosList.appendChild(item);
-            }
-        }
-        container.appendChild(zerosList);
-        var listHeader = document.createElement('h3');
-        listHeader.setAttribute('class', 'sharpieMarker')
-        listHeader.innerText = 'Products with No Vote';
-        container.appendChild(listHeader);
     } else {
         placeRandomImages();
     }
