@@ -17,10 +17,10 @@ h1 {
 input[type="button"] {
     cursor: pointer;
     position: absolute;
-    left: 78%;
-    bottom: 60%;
-    width: 130px;
-    height: 40px;
+    left: 63%;
+    bottom: 61%;
+    width: 145px;
+    height: 47px;
     color: #ffffff;
     text-shadow: 1px 1px 2px rgb(211, 211, 211);
     background-color: rgb(247, 177, 72);
@@ -98,8 +98,14 @@ footer h6 {
     background-color: rgb(245, 243, 238);
     color:black;
     font-family: 'Permanent Marker', cursive;
-    position: relative;
     border-top: 1px solid rgb(236, 234, 226);
     border-left: 1px solid rgb(236, 234, 226);
     box-shadow: 1px 1px 2px #8b8b8b;
+    width: 189px;
+    height: 190px;
+    list-style: none;
+    margin: 0;
+    top: 0;
+    left: 0;
+    font-size: 14px;
 }

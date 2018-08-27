@@ -6,12 +6,6 @@ function getImage(fileName, name) {
     this.label = name;
     this.clickHistory = 0;
 }
-
-function copyGetImages(name) {
-    this.label = name;
-    this.y = 0;
-}
-
 var images = [];
 images.push(new getImage("bag.jpg", "Bag"));
 images.push(new getImage("banana.jpg", "Banana Slicer"));
@@ -27,6 +21,11 @@ images.push(new getImage("unicorn.jpg", "Unicorn"));
 images.push(new getImage("usb.jpg", "USB Tenticle"));
 images.push(new getImage("water_can.jpg", "Watering-Can"));
 images.push(new getImage("wine_glass.jpg", "Wine Glass"));
+
+function copyGetImages(name) {
+    this.label = name;
+    this.y = 0;
+}
 
 var copyImages = [];
 copyImages.push(new copyGetImages("Bag"));
@@ -71,7 +70,7 @@ function placeRandomImages() {
     header[0].innerText = "";
     shuffleArray(images);
     //reload images and instructions
-    instructions.innerText = "Pick the product you are most likely to purchase:";
+    instructions.innerText = "Pick a product you might purchase. You may choose the same one more than once.";
     header[0].appendChild(instructions);
     imageContainer = document.createElement('div');
     imageContainer.setAttribute('id', 'votingImgContainer');
@@ -139,37 +138,20 @@ function resultsPage() {
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');
     var progress = document.getElementById('progress');
-    var container = document.getElementById('loser-container');
-    container.innerText = '';
     header[0].innerText = '';
     progress.innerText = '';
     addImage.innerText = '';
     var thanks = document.createElement('h2');
-    thanks.innerText = 'Thank you for voting! Here are your results:';
+    thanks.innerText = 'Thank you for voting! To reset voting for a different user, Tap here:';
     header[0].appendChild(thanks);
     var button = document.createElement('input');
     button.setAttribute('type', 'button');
-    button.setAttribute('value', 'Vote Again');
+    button.setAttribute('value', 'Reset');
     header[0].appendChild(button);
     button.addEventListener('click', placeRandomImages);
     drawChart();
-    var zerosList = document.getElementById('list-of-losers');
-    for (var index = 0; index < images.length; index++) {
-        if (images[index].y == 0) {
-            (console.log(images[index]));
-            var item = document.createElement('li');
-            console.log(item);
-            item.innerText = images[index].label;
-            console.log(item.innerText);
-            zerosList.appendChild(item);
-            console.log(zerosList);
-        }
-    }
-    container.appendChild(zerosList);
-    var listHeader = document.createElement('h3');
-    listHeader.setAttribute('class', 'sharpieMarker')
-    listHeader.innerText = 'Products with No Vote';
-    container.appendChild(listHeader);
+    makeLoserList();
+    
     // drawHistoryChart();
 }
 
@@ -185,10 +167,31 @@ function trackClicks(event) {
     if (totalClicks == 7) {
         showProgress();
         resultsPage();
+        
     } else {
         placeRandomImages();
     }
 }
+
+function makeLoserList() {
+    var container = document.getElementById('loser-container');
+    container.innerText = '';
+        var zerosList = document.createElement('ul');
+        zerosList.setAttribute('id', 'loser-container');
+        for (var index = 0; index < images.length; index++) {
+            if (images[index].y == 0) {
+                var item = document.createElement('li');
+                item.innerText = images[index].label;
+                zerosList.appendChild(item);
+            }
+        }
+        container.appendChild(zerosList);
+        var listHeader = document.createElement('h3');
+        listHeader.setAttribute('class', 'sharpieMarker')
+        listHeader.innerText = 'Products with 0 votes';
+        container.appendChild(listHeader);
+}
+
 
 window.addEventListener('load', placeRandomImages);
 // window.addEventListener('load', showProgress);

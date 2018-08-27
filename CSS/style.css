@@ -58,11 +58,16 @@ h1 {
 }
 
 h2 {
-    text-align: center;
+    text-align: left;
+    width: 75%;
     color: white;
     font-family: 'IBM Plex Mono', monospace;
-    margin: 0 5em 1em 5em;
+    font-size: 17px;
+    margin: 0 5em 1em 0;
     background-color: rgba(128, 128, 128, 0.5);
+    height: 2em;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 #progress {
