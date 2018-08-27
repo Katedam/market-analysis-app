@@ -22,26 +22,31 @@ images.push(new getImage("usb.jpg", "USB Tenticle"));
 images.push(new getImage("water_can.jpg", "Watering-Can"));
 images.push(new getImage("wine_glass.jpg", "Wine Glass"));
 
-function copyGetImages(name) {
+function copyGetImages(fileName, name) {
+    this.fileName = fileName;
     this.label = name;
     this.y = 0;
 }
 
 var copyImages = [];
-copyImages.push(new copyGetImages("Bag"));
-copyImages.push(new copyGetImages("Banana Slicer"));
-copyImages.push(new copyGetImages("Rain Boots"));
-copyImages.push(new copyGetImages("Red Chair"));
-copyImages.push(new copyGetImages("Cthulhu"));
-copyImages.push(new copyGetImages("Dragon"));
-copyImages.push(new copyGetImages("Pen Utensils"));
+copyImages.push(new copyGetImages("bag.jpg", "Bag"));
+copyImages.push(new copyGetImages("banana.jpg", "Banana Slicer"));
+copyImages.push(new copyGetImages("boots.jpg", "Rain Boots"));
+copyImages.push(new copyGetImages("chair.jpg", "Red Chair"));
+copyImages.push(new copyGetImages("cthulhu.jpg", "Cthulhu"));
+copyImages.push(new copyGetImages("dragon.jpg", "Dragon"));
+copyImages.push(new copyGetImages("pen.jpg", "Pen Utensils"));
 copyImages.push(new copyGetImages("scissors.jpg", "Pizza Scissors"));
-copyImages.push(new copyGetImages("Shark"));
-copyImages.push(new copyGetImages("Sweeper Babe"));
-copyImages.push(new copyGetImages("Unicorn"));
-copyImages.push(new copyGetImages("USB Tenticle"));
-copyImages.push(new copyGetImages("Watering-Can"));
-copyImages.push(new copyGetImages("Wine Glass"));
+copyImages.push(new copyGetImages("shark.jpg", "Shark"));
+copyImages.push(new copyGetImages("sweep.jpg",  "Sweeper Babe"));
+copyImages.push(new copyGetImages("unicorn.jpg",  "Unicorn"));
+copyImages.push(new copyGetImages("usb.jpg", "USB Tenticle"));
+copyImages.push(new copyGetImages("water_can.jpg", "Watering-Can"));
+copyImages.push(new copyGetImages("wine_glass.jpg", "Wine Glass"));
+
+function clickHistory() {
+
+}
 
 function placeRandomImages() {
     var chartContainer = document.getElementById('chart-container');
@@ -119,6 +124,25 @@ function shuffleArray(array) {
     return array;
 }
 
+//this function is still in progress - I'm planning to use it to get the #1 product
+function sort() {
+    copyImages.sort((a, b) => a-b);
+    var votes = [];
+    var sortImages = copyImages.slice(0);
+    console.log(sortImages);
+    for (var index = 0; index < sortImages.length; index++) {
+        var fileName = '';
+        for (var imageIndex = 0; imageIndex < copyImages.length; copyImages++) {
+            if (sortImages[imageIndex].y == votes[index]) {
+                console.log(fileName = copyImages[imageIndex].fileName);
+                console.log(sortImages.splice(imageIndex));
+                
+            }
+        }
+    }
+    
+}
+
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
@@ -151,16 +175,23 @@ function resultsPage() {
     button.addEventListener('click', placeRandomImages);
     drawChart();
     makeLoserList();
-    
-    // drawHistoryChart();
+    drawHistoryChart();
 }
 
 function trackClicks(event) {
     showProgress();
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
+            console.log(images[index].fileName);
             images[index].y++
-            copyImages[index].y++
+            console.log(images[index].y);
+            for (var copy = 0; copy < copyImages.length; copy++) {
+               if (event.target.attributes[0].value == 'img/'+ copyImages[copy].fileName) {
+                console.log(event.target.attributes[0].value);
+                copyImages[copy].y++
+                console.log(copyImages[copy].y);   
+               }
+            }
         }
     }
     totalClicks++

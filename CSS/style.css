@@ -83,4 +83,13 @@ h2 {
     background-color: rgb(185, 83, 0);
 }
 
+#history-chart-container {
+    width: 35%;
+    height: 250;
+    padding: 0 1em 0 1em;
+}
+
+div#chart-container {
+    width: 25%;
+}
 
