@@ -148,7 +148,7 @@ function showProgress() {
    var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
    bar.innerText = '';
    var percent = document.createElement('p');
-    if (totalClicks == 7) {
+    if (totalClicks == 15) {
        bar.style.width = '0%';
        var progress = document.getElementById("progress");
        progress.style.width = '0%';
@@ -195,7 +195,7 @@ function trackClicks(event) {
         }
     }
     totalClicks++
-    if (totalClicks == 7) {
+    if (totalClicks == 15) {
         showProgress();
         resultsPage();
         
