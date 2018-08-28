@@ -1,11 +1,9 @@
-var totalClicks = 0;
-
 function getImage(fileName, name) {
     this.fileName = fileName;
     this.y = 0; //y = voteTotalForImage
     this.label = name;
-    this.clickHistory = 0;
 }
+
 var images = [];
 images.push(new getImage("bag.jpg", "Bag"));
 images.push(new getImage("banana.jpg", "Banana Slicer"));
@@ -44,14 +42,63 @@ copyImages.push(new copyGetImages("usb.jpg", "USB Tenticle"));
 copyImages.push(new copyGetImages("water_can.jpg", "Watering-Can"));
 copyImages.push(new copyGetImages("wine_glass.jpg", "Wine Glass"));
 
-function clickHistory() {
+var totalClicks = 0;
+function trackClicks(event) {
+    showProgress();
+    for (var index = 0; index < images.length; index++) {
+        if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
+            images[index].y++
+            for (var copy = 0; copy < copyImages.length; copy++) {
+               if (event.target.attributes[0].value == 'img/'+ copyImages[copy].fileName) {
+                copyImages[copy].y++
+               }
+            }
+        }
+    }
+    totalClicks++
+    if (totalClicks == 15) {
+        showProgress();
+        resultsPage();
+        
+    } else {
+        placeRandomImages();
+    }
+}
 
+function showProgress() {
+   var bar = document.getElementById("bar");
+   var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
+   bar.innerText = '';
+   var percent = document.createElement('p');
+    if (totalClicks == 15) {
+       bar.style.width = '0%';
+       var progress = document.getElementById("progress");
+       progress.style.width = '0%';
+   } else {
+        percent.innerText = width + '%';
+        bar.appendChild(percent);
+    }
+}
+
+function shuffleArray(array) {
+    var newLength = array.length
+    while (newLength) {
+        var ranNum = Math.floor(Math.random() * newLength--);
+        var swap = array[newLength];
+        array[newLength] = array[ranNum];
+        array[ranNum] = swap;
+    }
+    return array;
 }
 
 function placeRandomImages() {
     var chartContainer = document.getElementById('chart-container');
-    if (chartContainer.innerText !== '') {
+    var loserContainer = document.getElementById('loser-container');
+    var voteHistoryContainer = document.getElementById('history-chart-container');
+    if (chartContainer.innerText !== '' && loserContainer.innerText !== '' && voteHistoryContainer.innerText !== '') {
         chartContainer.innerText = '';
+        loserContainer.innerText = '';
+        voteHistoryContainer.innerText = '';
         totalClicks = 0;
         var restartProgressBar = document.getElementById('progress');
         var addBar = document.createElement('div');
@@ -113,49 +160,23 @@ function placeRandomImages() {
     image.addEventListener('click', trackClicks);
 }
 
-function shuffleArray(array) {
-    var newLength = array.length
-    while (newLength) {
-        var ranNum = Math.floor(Math.random() * newLength--);
-        var swap = array[newLength];
-        array[newLength] = array[ranNum];
-        array[ranNum] = swap;
-    }
-    return array;
-}
-
-//this function is still in progress - I'm planning to use it to get the #1 product
-function sort() {
-    copyImages.sort((a, b) => a-b);
-    var votes = [];
-    var sortImages = copyImages.slice(0);
-    console.log(sortImages);
-    for (var index = 0; index < sortImages.length; index++) {
-        var fileName = '';
-        for (var imageIndex = 0; imageIndex < copyImages.length; copyImages++) {
-            if (sortImages[imageIndex].y == votes[index]) {
-                console.log(fileName = copyImages[imageIndex].fileName);
-                console.log(sortImages.splice(imageIndex));
-                
+function makeLoserList() {
+    var container = document.getElementById('loser-container');
+    container.innerText = '';
+        var zerosList = document.createElement('ul');
+        zerosList.setAttribute('id', 'loser-container');
+        for (var index = 0; index < images.length; index++) {
+            if (images[index].y == 0) {
+                var item = document.createElement('li');
+                item.innerText = images[index].label;
+                zerosList.appendChild(item);
             }
         }
-    }
-    
-}
-
-function showProgress() {
-   var bar = document.getElementById("bar");
-   var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
-   bar.innerText = '';
-   var percent = document.createElement('p');
-    if (totalClicks == 15) {
-       bar.style.width = '0%';
-       var progress = document.getElementById("progress");
-       progress.style.width = '0%';
-   } else {
-        percent.innerText = width + '%';
-        bar.appendChild(percent);
-    }
+        container.appendChild(zerosList);
+        var listHeader = document.createElement('h3');
+        listHeader.setAttribute('class', 'sharpieMarker')
+        listHeader.innerText = 'Products with 0 votes';
+        container.appendChild(listHeader);
 }
 
 function resultsPage() {
@@ -178,93 +199,22 @@ function resultsPage() {
     drawHistoryChart();
 }
 
-function trackClicks(event) {
-    showProgress();
-    for (var index = 0; index < images.length; index++) {
-        if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
-            console.log(images[index].fileName);
-            images[index].y++
-            console.log(images[index].y);
-            for (var copy = 0; copy < copyImages.length; copy++) {
-               if (event.target.attributes[0].value == 'img/'+ copyImages[copy].fileName) {
-                console.log(event.target.attributes[0].value);
-                copyImages[copy].y++
-                console.log(copyImages[copy].y);   
-               }
+
+//this function is still in progress - will be used to get #1 product
+function sort() {
+    copyImages.sort((a, b) => a-b);
+    var votes = [];
+    var sortImages = copyImages.slice(0);
+    console.log(sortImages);
+    for (var index = 0; index < sortImages.length; index++) {
+        var fileName = '';
+        for (var imageIndex = 0; imageIndex < copyImages.length; copyImages++) {
+            if (sortImages[imageIndex].y == votes[index]) {
+                console.log(fileName = copyImages[imageIndex].fileName);
+                console.log(sortImages.splice(imageIndex));
+                
             }
         }
-    }
-    totalClicks++
-    if (totalClicks == 15) {
-        showProgress();
-        resultsPage();
-        
-    } else {
-        placeRandomImages();
-    }
+    } 
 }
-
-function makeLoserList() {
-    var container = document.getElementById('loser-container');
-    container.innerText = '';
-        var zerosList = document.createElement('ul');
-        zerosList.setAttribute('id', 'loser-container');
-        for (var index = 0; index < images.length; index++) {
-            if (images[index].y == 0) {
-                var item = document.createElement('li');
-                item.innerText = images[index].label;
-                zerosList.appendChild(item);
-            }
-        }
-        container.appendChild(zerosList);
-        var listHeader = document.createElement('h3');
-        listHeader.setAttribute('class', 'sharpieMarker')
-        listHeader.innerText = 'Products with 0 votes';
-        container.appendChild(listHeader);
-}
-
-
 window.addEventListener('load', placeRandomImages);
-// window.addEventListener('load', showProgress);
-
-
-// Below is an alternative results page in which I was attemping to present the top three picks.
-// function resultsPage() {
-//     var ys = [];
-//     function getVoteTotals(array, y) {
-//         for (var index = 0; index < array.length; index++)
-//             ys.push(array[index][y]);
-//     }
-//     getVoteTotals(images, "y");
-//     console.log(ys);
-//     var mostVotes = [];
-//     for (var list = 0; list < 3; list++) {
-//         var topPick = Math.max(...ys);
-//         mostVotes.push(topPick);
-//         console.log(mostVotes);
-//         ys.splice(0, topPick);
-//         console.log(ys);
-//     }
-//     var addImage = document.getElementById('images');
-//     var header = document.getElementsByTagName('header');
-//     var progress = document.getElementById('progress');
-//     header[0].innerText = '';
-//     progress.innerText = '';
-//     addImage.innerText = '';
-//     var thanks = document.createElement('h2');
-//     thanks.innerText = 'Thank you for voting! Here are your top picks:';
-//     header[0].appendChild(thanks);
-//     var showResults = document.getElementById('results');
-//     for (var index = 0; index < mostVotes.length; index++) {
-//         var imageContainer = document.createElement('div');
-//         imageContainer.setAttribute('id', 'imageContainer');
-//         var image = document.createElement('img');
-//         image.setAttribute('src', "img/"+images[index].fileName);
-//         imageContainer.appendChild(image);
-//         var name = document.createElement('h3');
-//         name.setAttribute('class', 'sharpieMarker');
-//         name.innerHTML = images[index].name + "<br>VOTES  " + mostVotes[index];
-//         imageContainer.appendChild(name);
-//         showResults.appendChild(imageContainer);
-//     }
-// }
