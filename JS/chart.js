@@ -5,7 +5,7 @@ function drawChart() {
    },
    data: [
    {
-     type: "bar",
+     type: "column",
      dataPoints: images,
    }
    ]

@@ -122,16 +122,16 @@ h3.sharpieMarker {
 }
 
 #history-chart-container {
-    width: 40%;
+    width: 35%;
     height: 400px;
     margin-left: 10px;
 }
 
 div#chart-container {
-    width: 55%;
+    width: 60%;
 }
-/* 
-#loser-container {
+
+/* #loser-container {
     height: 255px;
     background-color: white;
     color: red;
@@ -139,9 +139,9 @@ div#chart-container {
     background-color: rgb(255, 255, 255);
     box-shadow: 2px 2px 9px #221100;
     border-radius: 3px;
-} */
+}
 
-/* #loser-container ul {
+#loser-container ul {
     background-color: rgb(245, 243, 238);
     color:black;
     font-family: 'Permanent Marker', cursive;
