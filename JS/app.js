@@ -1,46 +1,46 @@
-function getImage(fileName, name) {
+function GetImages(fileName, name) {
     this.fileName = fileName;
     this.y = 0; //y = voteTotalForImage
     this.label = name;
 }
 
 var images = [];
-images.push(new getImage("bag.jpg", "Bag"));
-images.push(new getImage("banana.jpg", "Banana Slicer"));
-images.push(new getImage("boots.jpg", "Rain Boots"));
-images.push(new getImage("chair.jpg", "Red Chair"));
-images.push(new getImage("cthulhu.jpg", "Cthulhu"));
-images.push(new getImage("dragon.jpg", "Dragon"));
-images.push(new getImage("pen.jpg", "Pen Utensils"));
-images.push(new getImage("scissors.jpg", "Pizza Scissors"));
-images.push(new getImage("shark.jpg", "Shark"));
-images.push(new getImage("sweep.jpg", "Sweeper Babe"));
-images.push(new getImage("unicorn.jpg", "Unicorn"));
-images.push(new getImage("usb.jpg", "USB Tenticle"));
-images.push(new getImage("water_can.jpg", "Watering-Can"));
-images.push(new getImage("wine_glass.jpg", "Wine Glass"));
+images.push(new GetImages("bag.jpg", "Bag"));
+images.push(new GetImages("banana.jpg", "Banana Slicer"));
+images.push(new GetImages("boots.jpg", "Rain Boots"));
+images.push(new GetImages("chair.jpg", "Red Chair"));
+images.push(new GetImages("cthulhu.jpg", "Cthulhu"));
+images.push(new GetImages("dragon.jpg", "Dragon"));
+images.push(new GetImages("pen.jpg", "Pen Utensils"));
+images.push(new GetImages("scissors.jpg", "Pizza Scissors"));
+images.push(new GetImages("shark.jpg", "Shark"));
+images.push(new GetImages("sweep.jpg", "Sweeper Babe"));
+images.push(new GetImages("unicorn.jpg", "Unicorn"));
+images.push(new GetImages("usb.jpg", "USB Tenticle"));
+images.push(new GetImages("water_can.jpg", "Watering-Can"));
+images.push(new GetImages("wine_glass.jpg", "Wine Glass"));
 
-function copyGetImages(fileName, name) {
+function CopyGetImages(fileName, name) {
     this.fileName = fileName;
     this.label = name;
     this.y = 0;
 }
 
 var copyImages = [];
-copyImages.push(new copyGetImages("bag.jpg", "Bag"));
-copyImages.push(new copyGetImages("banana.jpg", "Banana Slicer"));
-copyImages.push(new copyGetImages("boots.jpg", "Rain Boots"));
-copyImages.push(new copyGetImages("chair.jpg", "Red Chair"));
-copyImages.push(new copyGetImages("cthulhu.jpg", "Cthulhu"));
-copyImages.push(new copyGetImages("dragon.jpg", "Dragon"));
-copyImages.push(new copyGetImages("pen.jpg", "Pen Utensils"));
-copyImages.push(new copyGetImages("scissors.jpg", "Pizza Scissors"));
-copyImages.push(new copyGetImages("shark.jpg", "Shark"));
-copyImages.push(new copyGetImages("sweep.jpg",  "Sweeper Babe"));
-copyImages.push(new copyGetImages("unicorn.jpg",  "Unicorn"));
-copyImages.push(new copyGetImages("usb.jpg", "USB Tenticle"));
-copyImages.push(new copyGetImages("water_can.jpg", "Watering-Can"));
-copyImages.push(new copyGetImages("wine_glass.jpg", "Wine Glass"));
+copyImages.push(new CopyGetImages("bag.jpg", "Bag"));
+copyImages.push(new CopyGetImages("banana.jpg", "Banana Slicer"));
+copyImages.push(new CopyGetImages("boots.jpg", "Rain Boots"));
+copyImages.push(new CopyGetImages("chair.jpg", "Red Chair"));
+copyImages.push(new CopyGetImages("cthulhu.jpg", "Cthulhu"));
+copyImages.push(new CopyGetImages("dragon.jpg", "Dragon"));
+copyImages.push(new CopyGetImages("pen.jpg", "Pen Utensils"));
+copyImages.push(new CopyGetImages("scissors.jpg", "Pizza Scissors"));
+copyImages.push(new CopyGetImages("shark.jpg", "Shark"));
+copyImages.push(new CopyGetImages("sweep.jpg",  "Sweeper Babe"));
+copyImages.push(new CopyGetImages("unicorn.jpg",  "Unicorn"));
+copyImages.push(new CopyGetImages("usb.jpg", "USB Tenticle"));
+copyImages.push(new CopyGetImages("water_can.jpg", "Watering-Can"));
+copyImages.push(new CopyGetImages("wine_glass.jpg", "Wine Glass"));
 
 var totalClicks = 0;
 function trackClicks(event) {
@@ -198,7 +198,6 @@ function resultsPage() {
     makeLoserList();
     drawHistoryChart();
 }
-
 
 //this function is still in progress - will be used to get #1 product
 function sort() {
