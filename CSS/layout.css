@@ -35,10 +35,13 @@ h1 {
 }
 
 aside {
+    /* background-color: white; */
     display: flex;
+    flex-wrap: wrap;
     vertical-align: bottom;
     justify-content: space-between;
     padding: 0 2em 0 2em;
+    height: 500px;
 }
 
 footer {

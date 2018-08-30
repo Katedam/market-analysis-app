@@ -28,7 +28,6 @@ function copyGetImages(fileName, name) {
 
 var copyImages = images;
 
-
 function getProductStatus() {
     if(localStorage.getItem('Product Votes') == null) {
         localStorage.setItem('Product Votes', JSON.stringify(images));
@@ -45,9 +44,6 @@ function getProductStatus() {
         return storeItems;
     }
 }
-
-
-
 
 var totalClicks = 0;
 function trackClicks(event) {
@@ -162,24 +158,24 @@ function placeRandomImages() {
     image.addEventListener('click', trackClicks);
 }
 
-function makeLoserList() {
-    var container = document.getElementById('loser-container');
-    container.innerText = '';
-        var zerosList = document.createElement('ul');
-        zerosList.setAttribute('id', 'loser-container');
-        for (var index = 0; index < images.length; index++) {
-            if (images[index].y == 0) {
-                var item = document.createElement('li');
-                item.innerText = images[index].label;
-                zerosList.appendChild(item);
-            }
-        }
-        container.appendChild(zerosList);
-        var listHeader = document.createElement('h3');
-        listHeader.setAttribute('class', 'sharpieMarker')
-        listHeader.innerText = 'Products with 0 votes';
-        container.appendChild(listHeader);
-}
+// function makeLoserList() {
+//     var container = document.getElementById('loser-container');
+//     container.innerText = '';
+//         var zerosList = document.createElement('ul');
+//         zerosList.setAttribute('id', 'loser-container');
+//         for (var index = 0; index < images.length; index++) {
+//             if (images[index].y == 0) {
+//                 var item = document.createElement('li');
+//                 item.innerText = images[index].label;
+//                 zerosList.appendChild(item);
+//             }
+//         }
+//         container.appendChild(zerosList);
+//         var listHeader = document.createElement('h3');
+//         listHeader.setAttribute('class', 'sharpieMarker')
+//         listHeader.innerText = 'Products with 0 votes';
+//         container.appendChild(listHeader);
+// }
 
 function resultsPage() {
     var addImage = document.getElementById('images');
@@ -196,8 +192,10 @@ function resultsPage() {
     button.setAttribute('value', 'Reset');
     header[0].appendChild(button);
     button.addEventListener('click', placeRandomImages);
+    var chartContainer = document.getElementById('charts-and-lists');
+    chartContainer.setAttribute('style', 'background-color: white')
     drawChart();
-    makeLoserList();
+    // makeLoserList();
     drawHistoryChart();
 }
 

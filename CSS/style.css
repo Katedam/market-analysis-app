@@ -122,25 +122,26 @@ h3.sharpieMarker {
 }
 
 #history-chart-container {
-    width: 35%;
-    height: 250;
-    padding: 0 1em 0 1em;
+    width: 40%;
+    height: 400px;
+    margin-left: 10px;
 }
 
 div#chart-container {
-    width: 25%;
+    width: 55%;
 }
-
+/* 
 #loser-container {
+    height: 255px;
     background-color: white;
     color: red;
     width: 212px;
     background-color: rgb(255, 255, 255);
     box-shadow: 2px 2px 9px #221100;
     border-radius: 3px;
-}
+} */
 
-#loser-container ul {
+/* #loser-container ul {
     background-color: rgb(245, 243, 238);
     color:black;
     font-family: 'Permanent Marker', cursive;
@@ -154,4 +155,4 @@ div#chart-container {
     top: 0;
     left: 0;
     font-size: 14px;
-}
+} */
