@@ -1,7 +1,7 @@
 function drawChart() {
  var chart = new CanvasJS.Chart("chart-container", {
    title:{
-     text: "Total Votes for Each Product"
+     text: "Current User Votes"
    },
    data: [
    {
@@ -21,7 +21,7 @@ function drawHistoryChart() {
       data: [
       {
         type: "doughnut",
-        dataPoints: copyImages,
+        dataPoints: getProductStatus(),
       }
       ]
     });

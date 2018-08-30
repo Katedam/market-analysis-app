@@ -26,21 +26,28 @@ function copyGetImages(fileName, name) {
     this.y = 0;
 }
 
-var copyImages = [];
-copyImages.push(new copyGetImages("bag.jpg", "Bag"));
-copyImages.push(new copyGetImages("banana.jpg", "Banana Slicer"));
-copyImages.push(new copyGetImages("boots.jpg", "Rain Boots"));
-copyImages.push(new copyGetImages("chair.jpg", "Red Chair"));
-copyImages.push(new copyGetImages("cthulhu.jpg", "Cthulhu"));
-copyImages.push(new copyGetImages("dragon.jpg", "Dragon"));
-copyImages.push(new copyGetImages("pen.jpg", "Pen Utensils"));
-copyImages.push(new copyGetImages("scissors.jpg", "Pizza Scissors"));
-copyImages.push(new copyGetImages("shark.jpg", "Shark"));
-copyImages.push(new copyGetImages("sweep.jpg",  "Sweeper Babe"));
-copyImages.push(new copyGetImages("unicorn.jpg",  "Unicorn"));
-copyImages.push(new copyGetImages("usb.jpg", "USB Tenticle"));
-copyImages.push(new copyGetImages("water_can.jpg", "Watering-Can"));
-copyImages.push(new copyGetImages("wine_glass.jpg", "Wine Glass"));
+var copyImages = images;
+
+
+function getProductStatus() {
+    if(localStorage.getItem('Product Votes') == null) {
+        localStorage.setItem('Product Votes', JSON.stringify(images));
+    } else {
+        var storeItems = JSON.parse(localStorage.getItem('Product Votes'));
+        for(var i = 0; i < storeItems.length; i++) {
+            for(var j = 0; j < images.length; j++) {
+                if(storeItems[i].fileName == images[j].fileName) {
+                    storeItems[i].y += images[j].y;
+                }
+            }
+        }
+        localStorage.setItem('Product Votes', JSON.stringify(storeItems));
+        return storeItems;
+    }
+}
+
+
+
 
 var totalClicks = 0;
 function trackClicks(event) {
@@ -48,11 +55,6 @@ function trackClicks(event) {
     for (var index = 0; index < images.length; index++) {
         if (event.target.attributes[0].value == 'img/'+ images[index].fileName) {
             images[index].y++
-            for (var copy = 0; copy < copyImages.length; copy++) {
-               if (event.target.attributes[0].value == 'img/'+ copyImages[copy].fileName) {
-                copyImages[copy].y++
-               }
-            }
         }
     }
     totalClicks++
@@ -218,3 +220,4 @@ function sort() {
     } 
 }
 window.addEventListener('load', placeRandomImages);
+window.addEventListener('load', getProductStatus);
