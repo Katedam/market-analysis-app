@@ -28,6 +28,7 @@ function copyGetImages(fileName, name) {
 
 var copyImages = images;
 
+//adds votes for each product to the vote tallies stored in local storage 
 function getProductStatus() {
     if(localStorage.getItem('Product Votes') == null) {
         localStorage.setItem('Product Votes', JSON.stringify(images));
@@ -45,6 +46,7 @@ function getProductStatus() {
     }
 }
 
+//keeps track of the clicks and and num votes for each product
 var totalClicks = 0;
 function trackClicks(event) {
     showProgress();
@@ -63,6 +65,7 @@ function trackClicks(event) {
     }
 }
 
+//updates the progress bar
 function showProgress() {
    var bar = document.getElementById("bar");
    var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
@@ -90,12 +93,13 @@ function shuffleArray(array) {
 }
 
 function placeRandomImages() {
+    var resultsContainer = document.getElementById('charts-and-lists').setAttribute("style", "background-color: none");
     var chartContainer = document.getElementById('chart-container');
-    var loserContainer = document.getElementById('loser-container');
+    // var loserContainer = document.getElementById('loser-container');
     var voteHistoryContainer = document.getElementById('history-chart-container');
-    if (chartContainer.innerText !== '' && loserContainer.innerText !== '' && voteHistoryContainer.innerText !== '') {
+    if (chartContainer.innerText !== '' && voteHistoryContainer.innerText !== '') {
         chartContainer.innerText = '';
-        loserContainer.innerText = '';
+        // loserContainer.innerText = '';
         voteHistoryContainer.innerText = '';
         totalClicks = 0;
         var restartProgressBar = document.getElementById('progress');
@@ -119,7 +123,7 @@ function placeRandomImages() {
     addImage.innerText = "";
     header[0].innerText = "";
     shuffleArray(images);
-    //reload images and instructions
+    //load or reload images and instructions
     instructions.innerText = "Pick a product you might purchase. You may choose the same one more than once.";
     header[0].appendChild(instructions);
     imageContainer = document.createElement('div');
@@ -158,6 +162,7 @@ function placeRandomImages() {
     image.addEventListener('click', trackClicks);
 }
 
+//This function gets a list of the products with 0 votes for only the current user
 // function makeLoserList() {
 //     var container = document.getElementById('loser-container');
 //     container.innerText = '';
