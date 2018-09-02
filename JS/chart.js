@@ -3,9 +3,15 @@ function drawChart() {
    title:{
      text: "Current User Votes"
    },
+   axisY: {
+     interval: 1
+   },
+   axisX: {
+     interval: 1
+   },
    data: [
    {
-     type: "column",
+     type: "bar",
      dataPoints: images,
    }
    ]

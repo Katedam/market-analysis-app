@@ -122,13 +122,12 @@ h3.sharpieMarker {
 }
 
 #history-chart-container {
-    width: 35%;
-    height: 400px;
+    width: 40%;
     margin-left: 10px;
 }
 
 div#chart-container {
-    width: 60%;
+    width: 56%;
 }
 
 /* #loser-container {
