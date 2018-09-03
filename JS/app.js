@@ -197,7 +197,7 @@ function resultsPage() {
 function imageFadeOut() {
     var fadeOut = document.getElementById('images').getElementsByClassName('votingImgContainer');
         for (var i = 0; i < fadeOut.length; i++) {
-        fadeOut.item(i).style.animation = '1s imageFadeOut';
+        fadeOut.item(i).style.animation = '0.5s imageFadeOut';
     }
 }
 

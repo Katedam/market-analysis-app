@@ -50,39 +50,40 @@ header {
 }
 
 @keyframes rainbow {
+    /* 0% {
+        background-color: rgb(207, 168, 207);
+        width: 0%;
+    } */
     0% {
         background-color: rgb(207, 168, 207);
-        width: 0%;
-    }
-    14% {
-        background-color: rgb(207, 168, 207);
         width: 100%;
     }
-    15% {
+    /* 15% {
         background-color: rgb(221, 103, 103);
         width: 0%;
-    }
-    29% {
+    } */
+    33% {
         background-color: rgb(221, 103, 103);
         width: 100%;
     }
-    30% {
+    /* 30% {
         background-color: rgb(253, 194, 85);
         width: 0%;
-    }
-    44% {
+    } */
+    66% {
         background-color: rgb(253, 194, 85);
         width: 100%;
     }
-    45% {
+    /* 45% {
         background-color: yellow;
         width: 0%;
-    }
-    59% {
+    } */
+    100% {
         background-color: yellow;
         width: 100%;
+        color: black;
     }
-    60% {
+    /* 60% {
         background-color: rgb(128, 177, 128);
         width: 0%;
     }
@@ -97,7 +98,7 @@ header {
    100% {
       background-color: rgb(101, 101, 148);
       width: 100%;
-   } 
+   }  */
 }
 /* write a function that runs after the 15th click to change the color of the bar
 then add more (5-7) colors through out the run of the animation (4 sec)
@@ -181,9 +182,6 @@ input[type="button"]:focus {
         left: -100%;
         opacity: 0.1;
     }
-    /* 50% {
-        transform: rotateX(50deg);
-    } */
     100% {
         left: 0;
     }
