@@ -49,6 +49,60 @@ header {
     border-radius: 7px;
 }
 
+@keyframes rainbow {
+    0% {
+        background-color: purple;
+        width: 0%;
+    }
+    14% {
+        background-color: purple;
+        width: 100%;
+    }
+    15% {
+        background-color: red;
+        width: 0%;
+    }
+    29% {
+        background-color: red;
+        width: 100%;
+    }
+    30% {
+        background-color: orange;
+        width: 0%;
+    }
+    44% {
+        background-color: orange;
+        width: 100%;
+    }
+    45% {
+        background-color: yellow;
+        width: 0%;
+    }
+    59% {
+        background-color: yellow;
+        width: 100%;
+    }
+    60% {
+        background-color: green;
+        width: 0%;
+    }
+    74% {
+        background-color: green;
+        width: 100%;
+    }
+    75% {
+        background-color: blue;
+        width: 0;
+    }
+   100% {
+      background-color: blue; 
+      width: 100%;
+   } 
+}
+/* write a function that runs after the 15th click to change the color of the bar
+then add more (5-7) colors through out the run of the animation (4 sec)
+what if they run the length of the bar visually? 0% width: 10%; 20% width: 20%, etc. */
+
 input[type="button"] {
     cursor: pointer;
     position: absolute;
@@ -79,25 +133,60 @@ input[type="button"]:focus {
     outline: none;
 }
 
-#imageContainer {
-    background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 9px #221100;
-    border-radius: 3px;
+#images div {
+    cursor: pointer;
+    position: relative;
 }
 
-#votingImgContainer {
+.votingImgContainer {
+    position: relative;
+    left: 0;
     background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 9px #221100;
     border-radius: 3px;
+    transition: all 0.5s;
+    box-shadow: 2px 2px 9px #221100;
 }
 
-#votingImgContainer h3{
+.votingImgContainer:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 15px #221100;
+}
+
+.votingImgContainer img {
+    left: 0;
+}
+
+.votingImgContainer h3{
+    left: 0;
+    color: black;
     font-family: 'Permanent Marker', cursive;
     padding-left: 20px;
 }
 
-#images div {
-    cursor: pointer;
+@keyframes imageFadeOut {
+    0% {
+
+    }
+    50% {
+        transform: rotateX(50deg);
+    }
+    100% {
+        left: 100%;
+        opacity: 0.1;
+    }
+}
+
+@keyframes imageSlideIn {
+    0% {
+        left: -100%;
+        opacity: 0.1;
+    }
+    /* 50% {
+        transform: rotateX(50deg);
+    } */
+    100% {
+        left: 0;
+    }
 }
 
 img {

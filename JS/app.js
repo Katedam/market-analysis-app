@@ -56,12 +56,14 @@ function trackClicks(event) {
         }
     }
     totalClicks++
-    if (totalClicks == 15) {
-        showProgress();
-        resultsPage();
-        
+    if (totalClicks == 5) {
+        document.getElementById('images').innerText = "";
+        var bar = document.getElementById('bar')
+        bar.innerText = "CALCULATING";
+        bar.style.animation = '1s rainbow';
+        setTimeout(resultsPage, 1000);
     } else {
-        placeRandomImages();
+        setTimeout(placeRandomImages, 500);
     }
 }
 
@@ -71,15 +73,19 @@ function showProgress() {
    var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
    bar.innerText = '';
    var percent = document.createElement('p');
-    if (totalClicks == 15) {
-       bar.style.width = '0%';
-       var progress = document.getElementById("progress");
-       progress.style.width = '0%';
+    if (totalClicks == 5) {
+        bar.style.width = '0%';
+        var progress = document.getElementById("progress");
+        progress.style.width = '0%';
    } else {
         percent.innerText = width + '%';
         bar.appendChild(percent);
     }
 }
+
+// function barAnimation() {
+    
+// }
 
 function shuffleArray(array) {
     var newLength = array.length
@@ -93,7 +99,7 @@ function shuffleArray(array) {
 }
 
 function placeRandomImages() {
-    var resultsContainer = document.getElementById('charts-and-lists').setAttribute("style", "background-color: none");
+    document.getElementById('charts-and-lists').setAttribute("style", "background-color: none");
     var chartContainer = document.getElementById('chart-container');
     // var loserContainer = document.getElementById('loser-container');
     var voteHistoryContainer = document.getElementById('history-chart-container');
@@ -127,7 +133,8 @@ function placeRandomImages() {
     instructions.innerText = "Pick a product you might purchase. You may choose the same one more than once.";
     header[0].appendChild(instructions);
     imageContainer = document.createElement('div');
-    imageContainer.setAttribute('id', 'votingImgContainer');
+    imageContainer.setAttribute('class', 'votingImgContainer');
+    imageContainer.style.animation = '1s imageSlideIn';
     image.setAttribute('src', "img/"+images[0].fileName);
     imageContainer.appendChild(image);
     name = document.createElement('h3');
@@ -136,9 +143,12 @@ function placeRandomImages() {
     imageContainer.appendChild(name);
     addImage.appendChild(imageContainer);
     image.addEventListener('click', trackClicks);
+    image.addEventListener('click', imageFadeOut);
+
 
     imageContainer = document.createElement('div');
-    imageContainer.setAttribute('id', 'votingImgContainer');
+    imageContainer.setAttribute('class', 'votingImgContainer');
+    imageContainer.style.animation = '1s imageSlideIn';
     image = document.createElement('img');
     image.setAttribute('src', "img/"+images[1].fileName);
     imageContainer.appendChild(image);
@@ -148,9 +158,12 @@ function placeRandomImages() {
     imageContainer.appendChild(name);
     addImage.appendChild(imageContainer);
     image.addEventListener('click', trackClicks);
+    image.addEventListener('click', imageFadeOut);
+
 
     imageContainer = document.createElement('div');
-    imageContainer.setAttribute('id', 'votingImgContainer');
+    imageContainer.setAttribute('class', 'votingImgContainer');
+    imageContainer.style.animation = '1s imageSlideIn';
     image = document.createElement('img');
     image.setAttribute('src', "img/"+images[2].fileName);
     imageContainer.appendChild(image);
@@ -160,6 +173,7 @@ function placeRandomImages() {
     imageContainer.appendChild(name);
     addImage.appendChild(imageContainer);
     image.addEventListener('click', trackClicks);
+    image.addEventListener('click', imageFadeOut);
 }
 
 //This function gets a list of the products with 0 votes for only the current user
@@ -204,23 +218,30 @@ function resultsPage() {
     drawHistoryChart();
 }
 
-
-//this function is still in progress - will be used to get #1 product
-function sort() {
-    copyImages.sort((a, b) => a-b);
-    var votes = [];
-    var sortImages = copyImages.slice(0);
-    console.log(sortImages);
-    for (var index = 0; index < sortImages.length; index++) {
-        var fileName = '';
-        for (var imageIndex = 0; imageIndex < copyImages.length; copyImages++) {
-            if (sortImages[imageIndex].y == votes[index]) {
-                console.log(fileName = copyImages[imageIndex].fileName);
-                console.log(sortImages.splice(imageIndex));
-                
-            }
-        }
-    } 
+function imageFadeOut() {
+    var fadeOut = document.getElementById('images').getElementsByClassName('votingImgContainer');
+        for (var i = 0; i < fadeOut.length; i++) {
+        fadeOut.item(i).style.animation = '1s imageFadeOut';
+    }
 }
+
+//this function is still in progress - can be used to get #1 product
+// function sort() {
+//     copyImages.sort((a, b) => a-b);
+//     var votes = [];
+//     var sortImages = copyImages.slice(0);
+//     console.log(sortImages);
+//     for (var index = 0; index < sortImages.length; index++) {
+//         var fileName = '';
+//         for (var imageIndex = 0; imageIndex < copyImages.length; copyImages++) {
+//             if (sortImages[imageIndex].y == votes[index]) {
+//                 console.log(fileName = copyImages[imageIndex].fileName);
+//                 console.log(sortImages.splice(imageIndex));
+                
+//             }
+//         }
+//     } 
+// }
+
 window.addEventListener('load', placeRandomImages);
 window.addEventListener('load', getProductStatus);

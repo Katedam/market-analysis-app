@@ -13,23 +13,14 @@ h1 {
 #images {
     justify-content: center;
     display: flex;
-
 }
 
-#images img {
-    display: flex;
-    flex-flow: wrap;
+#images .votingImgContainer img {
     height: 200px;
     margin: 10px;
 }
 
-#votingImgContainer {
-    height: 270px;
-    margin: 20px;
-}
-
-#imageContainer {
-    width: 223px;
+.votingImgContainer {
     height: 270px;
     margin: 20px;
 }
