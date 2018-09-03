@@ -56,7 +56,7 @@ function trackClicks(event) {
         }
     }
     totalClicks++
-    if (totalClicks == 5) {
+    if (totalClicks == 15) {
         document.getElementById('images').innerText = "";
         var bar = document.getElementById('bar')
         bar.innerText = "CALCULATING";
@@ -73,7 +73,7 @@ function showProgress() {
    var width = parseInt(bar.style.width = (6 + (totalClicks / 15 * 100)) + '%');
    bar.innerText = '';
    var percent = document.createElement('p');
-    if (totalClicks == 5) {
+    if (totalClicks == 15) {
         bar.style.width = '0%';
         var progress = document.getElementById("progress");
         progress.style.width = '0%';
@@ -82,10 +82,6 @@ function showProgress() {
         bar.appendChild(percent);
     }
 }
-
-// function barAnimation() {
-    
-// }
 
 function shuffleArray(array) {
     var newLength = array.length
@@ -176,26 +172,6 @@ function placeRandomImages() {
     image.addEventListener('click', imageFadeOut);
 }
 
-//This function gets a list of the products with 0 votes for only the current user
-// function makeLoserList() {
-//     var container = document.getElementById('loser-container');
-//     container.innerText = '';
-//         var zerosList = document.createElement('ul');
-//         zerosList.setAttribute('id', 'loser-container');
-//         for (var index = 0; index < images.length; index++) {
-//             if (images[index].y == 0) {
-//                 var item = document.createElement('li');
-//                 item.innerText = images[index].label;
-//                 zerosList.appendChild(item);
-//             }
-//         }
-//         container.appendChild(zerosList);
-//         var listHeader = document.createElement('h3');
-//         listHeader.setAttribute('class', 'sharpieMarker')
-//         listHeader.innerText = 'Products with 0 votes';
-//         container.appendChild(listHeader);
-// }
-
 function resultsPage() {
     var addImage = document.getElementById('images');
     var header = document.getElementsByTagName('header');
@@ -225,6 +201,11 @@ function imageFadeOut() {
     }
 }
 
+window.addEventListener('load', placeRandomImages);
+window.addEventListener('load', getProductStatus);
+
+
+
 //this function is still in progress - can be used to get #1 product
 // function sort() {
 //     copyImages.sort((a, b) => a-b);
@@ -243,5 +224,22 @@ function imageFadeOut() {
 //     } 
 // }
 
-window.addEventListener('load', placeRandomImages);
-window.addEventListener('load', getProductStatus);
+//This function gets a list of the products with 0 votes for only the current user
+// function makeLoserList() {
+//     var container = document.getElementById('loser-container');
+//     container.innerText = '';
+//         var zerosList = document.createElement('ul');
+//         zerosList.setAttribute('id', 'loser-container');
+//         for (var index = 0; index < images.length; index++) {
+//             if (images[index].y == 0) {
+//                 var item = document.createElement('li');
+//                 item.innerText = images[index].label;
+//                 zerosList.appendChild(item);
+//             }
+//         }
+//         container.appendChild(zerosList);
+//         var listHeader = document.createElement('h3');
+//         listHeader.setAttribute('class', 'sharpieMarker')
+//         listHeader.innerText = 'Products with 0 votes';
+//         container.appendChild(listHeader);
+// }

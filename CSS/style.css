@@ -51,27 +51,27 @@ header {
 
 @keyframes rainbow {
     0% {
-        background-color: purple;
+        background-color: rgb(207, 168, 207);
         width: 0%;
     }
     14% {
-        background-color: purple;
+        background-color: rgb(207, 168, 207);
         width: 100%;
     }
     15% {
-        background-color: red;
+        background-color: rgb(221, 103, 103);
         width: 0%;
     }
     29% {
-        background-color: red;
+        background-color: rgb(221, 103, 103);
         width: 100%;
     }
     30% {
-        background-color: orange;
+        background-color: rgb(253, 194, 85);
         width: 0%;
     }
     44% {
-        background-color: orange;
+        background-color: rgb(253, 194, 85);
         width: 100%;
     }
     45% {
@@ -83,19 +83,19 @@ header {
         width: 100%;
     }
     60% {
-        background-color: green;
+        background-color: rgb(128, 177, 128);
         width: 0%;
     }
     74% {
-        background-color: green;
+        background-color: rgb(128, 177, 128);
         width: 100%;
     }
     75% {
-        background-color: blue;
+        background-color: rgb(101, 101, 148);
         width: 0;
     }
    100% {
-      background-color: blue; 
+      background-color: rgb(101, 101, 148);
       width: 100%;
    } 
 }
