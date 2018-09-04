@@ -165,9 +165,6 @@ input[type="button"]:focus {
 }
 
 @keyframes imageFadeOut {
-    0% {
-
-    }
     50% {
         transform: rotateX(50deg);
     }
@@ -211,12 +208,21 @@ h3.sharpieMarker {
 #history-chart-container {
     width: 40%;
     margin-left: 10px;
+    animation-name: history-chart;
+    animation-duration: 0.75s;
 }
 
-div#chart-container {
+#chart-container {
     width: 56%;
+    animation-name: chart;
+    animation-duration: 0.5s;
 }
 
+@keyframes showCharts {
+    0% {
+        opacity: 0.1;
+    }
+}
 /* #loser-container {
     height: 255px;
     background-color: white;

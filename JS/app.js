@@ -188,7 +188,8 @@ function resultsPage() {
     header[0].appendChild(button);
     button.addEventListener('click', placeRandomImages);
     var chartContainer = document.getElementById('charts-and-lists');
-    chartContainer.setAttribute('style', 'background-color: white')
+    chartContainer.setAttribute('style', 'background-color: white');
+    chartContainer.style.animation = '0.75s showCharts';
     drawChart();
     // makeLoserList();
     drawHistoryChart();
